@@ -13,13 +13,14 @@ var description;
 var goodimage;
 var badimage;
 var mehimage;
+var extrasad;
 
 
 function preload(){
      goodimage = loadImage("../img/smiley-01.png");
     badimage = loadImage("../img/smiley-2-01-01.png");
     mehimage = loadImage("../img/smiley-3-01.png");
-  
+    extrasad = loadImage("../img/extrasad-01.png");
   }
 
 // ***** Setup function ***** //
@@ -27,9 +28,8 @@ function setup(){
   button = select('#submit');
   city = select('#city');
   button.mousePressed(queryAPI);
-  createCanvas(1600, 1600);
-  x = width/2;
-  y = height;
+  var cnv = createCanvas(1600, 1600);
+  cnv.parent('sketch-holder');
 }
 
 function queryAPI(){
@@ -59,7 +59,11 @@ function draw(){
     else if (temperature > 15 & temperature < 17){
       image(mehimage, 400, 20, 600, 600);
     }
-    else{
+    else if (temperature <= 0){
+      image(extrasad, 400, 20, 600, 600);
+     }
+
+     else { 
       image(badimage, 400, 20, 600, 600);
     }
     // rect(200, 50, temperature *5, temperature * 5);
@@ -68,7 +72,7 @@ function draw(){
   fill(0);
     if (weatherData){
         textSize(40);
-        text(temperature + '\xBA celsius', 200, 20);
+        text(temperature + '\xBA celsius', 50, 20);
         text('humidity at ' + humidity + '%', 500 , 20);
         text(description, 900, 20);
   textAlign(LEFT, BOTTOM);
@@ -77,12 +81,15 @@ function draw(){
           text("Yay, you are warm!", 400, 650);
         }
         else if (temperature > 15 & temperature < 17){
-          text("Meh!", 500, 650);
+          text("Meh!", 550, 650);
         }
 
+        else if (temperature <= 0){
+          text("You are FROZEN!", 400, 650);
+        }
         else{
           text("Oh no, you are cold!", 400, 650);
         }
-   } 
+    }
 }
 
