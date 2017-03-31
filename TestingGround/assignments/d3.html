@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+ <title>Assignment 3</title>
+<!--     <link rel="stylesheet" type="text/css" href="css/site-specific.css">
+ -->    <link rel= "stylesheet" type = "text/css" href = "../css/d3.css">
+</head>
+<body>
+<script src="https://d3js.org/d3.v3.min.js"></script>
+<script>
+     var year = 2014;
+
+     var buttonYears = [1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014];
+
+     var margin = {top: 30, right: 0, bottom: 0, left: 100},
+          width = 500 - margin.left - margin.left,
+          height = 450 - margin.top - margin.bottom;
+
+     var body = d3.select("body");
+
+     var x = d3.scale.linear()
+          .range([0, width]);
+
+     var y = d3.scale.ordinal()
+          .rangeBands([0, height], 0.2, 0);
+
+     var xAxis = d3.svg.axis()
+          .scale(x)
+          .orient("top");
+
+     var yAxis = d3.svg.axis()
+          .scale(y)
+          .orient("left");
+
+     function keys(d) {
+          return d.age;
+     }
+
+     body.append("h2")
+               .text("Number of Individuals Affected by the Colombian Conflict between 1994 - 2014");
+
+     var playAll = body.append("div")
+          .attr("class", "play-button")
+          .text("▶ PLAY ALL YEARS");
+
+     var buttons = body.append("div")
+          .attr("class", "buttons-container")
+          .selectAll("div").data(buttonYears)
+       .enter().append("div")
+          .text(function(d) { return d; })
+          .attr("class", function(d) {
+               if(d == year)
+                    return "button selected";
+               else
+                    return "button";
+          });
+
+     body.append("div")
+          .attr("class", "clearfix")
+
+     body.append("div")
+          .attr("class", "top-label age-label")
+       .append("p")
+          .text("age group");
+
+     body.append("div")
+          .attr("class", "top-label")
+       .append("p")
+          .text("Number of Individuals Affected");
+
+     body.append("div")
+          .attr("class", "clearfix")
+
+     d3.csv("../data/colombiandata.csv", function(error, data){
+
+          var popData = data.filter(function(d) {return d.year == year});
+
+          x.domain([0, d3.extent(data, function(element) { return element.sumtotal; })]);
+
+          y.domain(popData.map(function(element) {return element.age}));
+
+          var svg = body.append("svg")
+               .attr("width", width + margin.left + margin.right)
+               .attr("height", height + margin.top + margin.bottom)
+           .append("g")
+               .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+          var barGroup = svg.append("g")
+               .attr("class", "bar");
+
+          var bars = barGroup.selectAll("rect")
+               .data(popData, keys)
+            .enter().append("rect")
+               .attr("x", 0)
+               .attr("y", function(d) {return y(d.age)})
+               .attr("width", function(d) {return x(d.total)})
+               .attr("height", y.rangeBand());
+
+          svg.append("g")
+               .call(xAxis)
+               .attr("class", "x axis")
+
+          svg.append("g")
+               .call(yAxis)
+               .attr("class","y axis")
+
+          buttons.on("click", function(d) {
+               update(d);
+               clearInterval(playInterval);
+          });
+
+          var playInterval;
+
+          playAll.on("click", function() {
+
+               var i = 0;
+
+               playInterval = setInterval(function() {
+                    update(buttonYears[i]);
+
+                    i++;
+
+                    if(i > buttonYears.length - 1) {
+                         clearInterval(playInterval);
+                    }
+
+               }, 700);
+          });
+
+          function update(updateYear) {
+
+               d3.select(".selected")
+                    .classed("selected", false);
+
+               buttons
+                    .filter(function(d) { return d == updateYear; })
+                    .classed("selected", true)
+
+               popData = data.filter(function(element) {return element.year == updateYear});
+
+               bars.data(popData, keys)
+                    .transition()
+                    .duration(500)
+                    .attr("width", function(d) { return x(d.total); });
+
+          };
+     });
+
+</script>
+</body>
+
+</html>

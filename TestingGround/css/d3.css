@@ -1,0 +1,69 @@
+
+     body {
+          font-family: Helvetica;
+     }
+     svg {
+          width: 500px;
+          height: 500px;
+     }
+     .play-button {
+          margin-left: 10px;
+          margin-bottom: 15px;
+          font-style: italic;
+          cursor: pointer;
+          color: grey;
+     }
+     .play-button:hover {
+          color: black;
+     }
+     .buttons-container {
+          width: 520px;
+          margin-bottom: 25px;
+     }
+     .button {
+          float: left;
+          margin-left: 10px;
+          font-weight: lighter;
+          cursor: pointer;
+     }
+     .selected {
+          font-weight: bold;
+     }
+     .top-label {
+          font-size: 13px;
+          font-style: italic;
+          text-transform: uppercase;
+          float: left;
+     }
+     .age-label {
+          text-align: right;
+          font-weight: bold;
+          width: 90px;
+          padding-right: 10px;
+     }
+     .clearfix {
+          clear: both;
+     }
+     .bar {
+          fill:#e2b3d2;
+     }
+     .bar-label {
+          text-anchor: end;
+     }
+     .axis-label {
+          text-anchor: middle;
+          font-size: 13px;
+     }
+     .x.axis line {
+       fill: none;
+       stroke: #000;
+     }
+     .x.axis text {
+          font-size: 13px;
+     }
+     .axis path {
+          display:none;
+     }
+     .y.axis line {
+          display:none;
+     }
