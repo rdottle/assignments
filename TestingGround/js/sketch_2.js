@@ -25,7 +25,7 @@ function setup(){
   button = select('#submit');
   city = select('#city');
   button.mousePressed(queryAPI);
-  createCanvas(1000, 1000);
+  createCanvas(1600, 1600);
   x = width/2;
   y = height;
 }
@@ -52,20 +52,20 @@ function draw(){
   stroke(0);
   if (weatherData){
     if (temperature > 15){
-      image(goodimage, 200, 20 - temperature, temperature*10, temperature*10);
+      image(goodimage, 400, 20, 600, 600);
     }
     else{
-      image(badimage, 200, 20 - temperature, temperature*10, temperature*10);
+      image(badimage, 400, 20, 600, 600);
     }
     // rect(200, 50, temperature *5, temperature * 5);
   }
   textAlign(LEFT, TOP);
   fill(0);
     if (weatherData){
-        textSize(24);
-        text(temperature + '\xBA Celsius', 300 + (temperature * 5), 20);
-        text(humidity, 500 + (temperature*5), 20);
-        text(description, 600 + (temperature*5), 20);
+        textSize(40);
+        text(temperature + '\xBA celsius', 200, 20);
+        text('humidity at ' + humidity + '%', 500 , 20);
+        text(description, 900, 20);
     }
 
 }
