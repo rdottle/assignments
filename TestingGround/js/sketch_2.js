@@ -9,13 +9,14 @@ var humidity = 0;
 var button;
 var cityinfo;
 var x,y;
+var description;
 
 // ***** Setup function ***** //
 function setup(){
   button = select('#submit');
   city = select('#city');
   button.mousePressed(queryAPI);
-  createCanvas(800, 800);
+  createCanvas(1000, 1000);
   x = width/2;
   y = height;
 }
@@ -31,20 +32,25 @@ function getWeatherData(apiData){
   temperature = weatherData.main.temp;
   humidity = weatherData.main.humidity;
   cityinfo = weatherData;
+  console.log(weatherData);
+  description = weatherData.weather[0].description;
    }
 
 // ***** Draw function ***** //
 function draw(){
+  background(255);
   noFill();
   stroke(0);
   if (weatherData){
-    rect(200, 200, temperature *5, temperature * 5);
+    rect(200, 50, temperature *5, temperature * 5);
   }
   textAlign(LEFT, TOP);
   fill(0);
     if (weatherData){
         textSize(24);
-        text(temperature, 200, 300);
+        text(temperature + '\xBA Celsius', 300 + (temperature * 5), 50);
+        text(humidity, 500 + (temperature*5), 50);
+        text(description, 600 + (temperature*5), 50);
     }
 
 }

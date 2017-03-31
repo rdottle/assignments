@@ -7,7 +7,7 @@ div.title{
     width: 100%;
     height: 100%;
     font-family: helvetica;
-    font-size: 5em;
+    font-size: 2.5em;
 
 }
 
@@ -15,7 +15,7 @@ div.h1{
 	color: #000000;
     font-weight: 400;
     font-family: helvetica;
-    font-size: 5em;
+    font-size: 2.5em;
     max-width: 800px;
     text-align: center;
     margin-right: auto;
@@ -55,6 +55,8 @@ p.search{
     font-weight: 300;
     font-size: 1.05em;
     line-height: 130%;
+    margin-bottom: 150px;
+    color: #FFC5E4;
 }
 
 p.search > a{
@@ -84,4 +86,27 @@ li.assignmentLink > a{
 
 li.assignmentLink > a:hover{
     background-color: #FFFF00; 
+}
+
+input[type="text"] {
+  display: block;
+  margin: 0;
+  margin-top: 20px;
+  width: 50%;
+  font-family: helvetica, sans-serif;
+  font-size: 18px;
+  appearance: none;
+  box-shadow: none;
+  border-radius: none;
+  border: solid 5px #c9c9c9;
+
+}
+input[type="text"]:focus {
+  outline: none;
+}
+
+button[type="go"] {
+    margin-top: none;
+    border: solid 2px;
+    background: #FFC5E4;
 }
