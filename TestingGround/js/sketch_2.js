@@ -66,6 +66,14 @@ function draw(){
         text(temperature + '\xBA celsius', 200, 20);
         text('humidity at ' + humidity + '%', 500 , 20);
         text(description, 900, 20);
+  textAlign(LEFT, BOTTOM);
+        textSize(60);
+        if (temperature > 15){
+          text("Yay, you are warm!", 400, 650);
+        }
+        else{
+          text("Oh no, you are cold!", 400, 650);
+        }
     }
 
 }
