@@ -10,6 +10,15 @@ var button;
 var cityinfo;
 var x,y;
 var description;
+var goodimage;
+var badimage;
+
+
+function preload(){
+     goodimage = loadImage("../img/smiley-01.png");
+    badimage = loadImage("../img/smiley-2-01.png");
+  
+  }
 
 // ***** Setup function ***** //
 function setup(){
@@ -42,7 +51,13 @@ function draw(){
   noFill();
   stroke(0);
   if (weatherData){
-    rect(200, 50, temperature *5, temperature * 5);
+    if (temperature > 15){
+      image(goodimage, 200, 50, temperature*5, temperature*5);
+    }
+    else{
+      image(badimage, 200, 50, temperature*5, temperature*5);
+    }
+    // rect(200, 50, temperature *5, temperature * 5);
   }
   textAlign(LEFT, TOP);
   fill(0);
