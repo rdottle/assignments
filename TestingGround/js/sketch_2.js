@@ -16,7 +16,7 @@ var badimage;
 
 function preload(){
      goodimage = loadImage("../img/smiley-01.png");
-    badimage = loadImage("../img/smiley-2-01.png");
+    badimage = loadImage("../img/smiley-2-01-01.png");
   
   }
 
@@ -52,10 +52,10 @@ function draw(){
   stroke(0);
   if (weatherData){
     if (temperature > 15){
-      image(goodimage, 200, 50, temperature*5, temperature*5);
+      image(goodimage, 200, 20 - temperature, temperature*10, temperature*10);
     }
     else{
-      image(badimage, 200, 50, temperature*5, temperature*5);
+      image(badimage, 200, 20 - temperature, temperature*10, temperature*10);
     }
     // rect(200, 50, temperature *5, temperature * 5);
   }
@@ -63,9 +63,9 @@ function draw(){
   fill(0);
     if (weatherData){
         textSize(24);
-        text(temperature + '\xBA Celsius', 300 + (temperature * 5), 50);
-        text(humidity, 500 + (temperature*5), 50);
-        text(description, 600 + (temperature*5), 50);
+        text(temperature + '\xBA Celsius', 300 + (temperature * 5), 20);
+        text(humidity, 500 + (temperature*5), 20);
+        text(description, 600 + (temperature*5), 20);
     }
 
 }
