@@ -12,11 +12,13 @@ var x,y;
 var description;
 var goodimage;
 var badimage;
+var mehimage;
 
 
 function preload(){
      goodimage = loadImage("../img/smiley-01.png");
     badimage = loadImage("../img/smiley-2-01-01.png");
+    mehimage = loadImage("../img/smiley-3-01.png");
   
   }
 
@@ -51,8 +53,11 @@ function draw(){
   noFill();
   stroke(0);
   if (weatherData){
-    if (temperature > 15){
+    if (temperature > 17){
       image(goodimage, 400, 20, 600, 600);
+    }
+    else if (temperature > 15 & temperature < 17){
+      image(mehimage, 400, 20, 600, 600);
     }
     else{
       image(badimage, 400, 20, 600, 600);
@@ -68,13 +73,16 @@ function draw(){
         text(description, 900, 20);
   textAlign(LEFT, BOTTOM);
         textSize(60);
-        if (temperature > 15){
+        if (temperature > 17 & temperature ){
           text("Yay, you are warm!", 400, 650);
         }
+        else if (temperature > 15 & temperature < 17){
+          text("Meh!", 500, 650);
+        }
+
         else{
           text("Oh no, you are cold!", 400, 650);
         }
-    }
-
+   } 
 }
 
