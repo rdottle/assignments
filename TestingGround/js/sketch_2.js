@@ -15,9 +15,11 @@ var badimage;
 var mehimage;
 var extrasad;
 
+var w = window.innerWidth;
+var h = window.innerHeight;
 
 function preload(){
-     goodimage = loadImage("../img/smiley-01.png");
+    goodimage = loadImage("../img/smiley-01.png");
     badimage = loadImage("../img/smiley-2-01-01.png");
     mehimage = loadImage("../img/smiley-3-01.png");
     extrasad = loadImage("../img/extrasad-01.png");
@@ -28,7 +30,7 @@ function setup(){
   button = select('#submit');
   city = select('#city');
   button.mousePressed(queryAPI);
-  var cnv = createCanvas(1600, 1600);
+  var cnv = createCanvas(1200, 1200);
   cnv.parent('sketch-holder');
 }
 
